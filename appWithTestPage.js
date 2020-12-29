@@ -4,16 +4,26 @@ const exphbs = require("express-handlebars");
 const path = require("path");
 
 var server = require('./sendEmail');
+const app = express();
 
 var yaml = require('node-yaml-config');
 config = yaml.load(__dirname + '/config.yml');
 console.log(config); 
 
-const app = express();
+app.engine("handlebars", exphbs());
 app.set('views', __dirname + '/views/');
 app.set("view engine", "handlebars");
-app.engine("handlebars", exphbs());
+
+// Static folder
+app.use("/public", express.static(path.join(__dirname, "public")));
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+app.get("/", (req, res) => {
+  res.render("contact");
+});
+
 app.post(config.submitPath, server.sendEmail );
+
 app.listen(config.submitPort, () => console.log("Server started..."));

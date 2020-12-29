@@ -1,0 +1,41 @@
+default:
+  submitPath: /send
+  submitPort: 8080
+  smtp:
+    host: mail.host.com
+    port: 25
+    auth:
+      user: username
+      pass: password
+  mail:
+    from: "fromWhom@mail.com"
+    to: "toWhom@mail.com"
+    subject: "Form Submitted"
+    body: | #handlebars formatting with an express "req" object, body has been body-parser (urlencode, json encoded)
+      <p>Form submission</p>
+      <p>{{{json body}}}</p>
+  resultPage: | #page after submission
+    <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <title>Submission complete</title>
+          </head>
+          <body>
+              Submission Complete
+          </body>
+          </html>
+  errorPage: |
+    <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <title>Something went wrong, try again later</title>
+          </head>
+          <body>
+              Something went wrong, try again later
+          </body>
+          </html>
+development:  #overrides defaults based on ENV setting
+test:
+production:              

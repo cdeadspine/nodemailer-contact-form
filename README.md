@@ -1,8 +1,24 @@
 # Nodemailer Contact Form
 
-Build Node.js/Express app using Nodemailer to send emails
+Node.js/Express app using Nodemailer to send emails, from static http POST
 
-- Please add your own SMTP info for it to work
+TODO
+    add redirect after completion url, delay seconds
+
+Configuration:
+TODO
+    Default email template:
+        <p>Form submission</p>
+        <p>{{{json body}}}</p>
+    If you know exact form elements:
+        <p>Form submission</p>
+        <p>{{{body.email}}}</p>
+
+Docker instructions:
+TODO
+
+Helm instructions:
+TODO
 
 ## Install Dependencies
 
@@ -10,8 +26,15 @@ Build Node.js/Express app using Nodemailer to send emails
 npm install
 ```
 
+TODO nodemon install?
 ## Run
 
 ```bash
-npm start
+node app.js
 ```
+
+
+TODO
+ not a lot of testing
+ security?
+ cross domain / CORS requirements?
