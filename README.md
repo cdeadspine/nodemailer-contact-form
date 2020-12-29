@@ -18,7 +18,8 @@ Docker instructions:
 TODO
 
 Helm instructions:
-TODO
+    helm lint ./helm/http-endpoint-nodemailer
+    helm package ./helm/http-endpoint-nodemailer
 
 ## Install Dependencies
 
