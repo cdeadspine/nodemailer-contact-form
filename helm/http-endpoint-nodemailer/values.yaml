@@ -2,13 +2,56 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+config: 
+  default: #required structure
+    submitPath: /send
+    submitPort: 8080
+    smtp:
+      host: mail.host.com
+      port: 25
+      auth:
+        user: username
+        pass: password
+    mail:
+      from: "fromWhom@mail.com"
+      to: "toWhom@mail.com"
+      subject: "Form Submitted"
+      body: | #handlebars formatting with an express "req.body" object, body has been body-parser (urlencode, json encoded)
+        <p>Form submission</p>
+        <p>{{{json body}}}</p>
+    resultPage: | #page after submission
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <title>Submission complete</title>
+      </head>
+      <body>
+          Submission Complete
+      </body>
+      </html>
+    errorPage: |
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+          <meta charset="UTF-8">
+          <title>Something went wrong, try again later</title>
+      </head>
+      <body>
+          Something went wrong, try again later
+      </body>
+      </html>
+  development: #required structure #overrides defaults based on ENV setting
+  test: #required structure
+  production: #required structure
+
 replicaCount: 1
 
 image:
-  repository: nginx
+  repository: docker.io/cdeadspine/nodemailer-contact-form
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -25,8 +68,8 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 2000
+podSecurityContext:
+  fsGroup: 1001
 
 securityContext: {}
   # capabilities:
@@ -38,7 +81,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8080
 
 ingress:
   enabled: false

@@ -2,7 +2,7 @@ apiVersion: v2
 name: http-endpoint-nodemailer
 description: NodeJS Express http endpoint, accepting form submission from static website and emailing handlebars-templated form values
 type: application
-version: 0.1.0
+version: 1.0.1 # package.json:version
 appVersion: 4.17.1  #express version
 keywords:
   - static-website

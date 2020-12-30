@@ -27,7 +27,11 @@ Docker instructions:
     exit
     docker restart 748202bdf918
     .\powershellTest.ps1 -port 49160
-
+    docker images
+    #based on package.json:version    
+    docker tag cdeadspine/nodemailer-contact-form:latest cdeadspine/nodemailer-contact-form:1.0.1
+    docker push cdeadspine/nodemailer-contact-form:1.0.1
+    docker push cdeadspine/nodemailer-contact-form:latest
 
 
 Helm instructions:

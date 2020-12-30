@@ -1,4 +1,4 @@
-default:
+default: #required structure
   submitPath: /send
   submitPort: 8080
   smtp:
@@ -36,6 +36,6 @@ default:
         Something went wrong, try again later
     </body>
     </html>
-development:  #overrides defaults based on ENV setting
-test:
-production:              
+development: #required structure #overrides defaults based on ENV setting
+test: #required structure
+production: #required structure
