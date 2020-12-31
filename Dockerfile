@@ -6,4 +6,4 @@ RUN npm ci --only=production
 COPY . .
 EXPOSE 8080
 VOLUME ${PWD}/mnt/config.yml:/config.yml
-CMD [ "node", "app.js" ] 
+CMD [ "node", "/usr/src/app/app.js" ]

@@ -1,11 +1,14 @@
 # http-endpoint-nodemailer
 
+TODO maybe remove clusterip?
+TODO health checks
+
 Simplest possible http endpoint -> email. 
 
-For example: for fixing contact forms when generating a static wordpress site
+For example: fixing contact forms when generating a static wordpress site using WP2static plugin and WPServerless forms plugin
 
 Submitted html->body must survive JSON.stringify. 
-The default template formats the full submitted JSON, but a handlebars template can format the email using specific known values.
+The default template formats the full submitted form as JSON, but a handlebars template can format the email using specific known values.
 
 ## TL;DR
 
@@ -43,15 +46,15 @@ The command removes all the Kubernetes components associated with the chart and 
 
 ## Parameters
 
-The following tables lists the configurable parameters of the NGINX chart and their default values per section/component:
+The following tables lists the configurable parameters
 
 
 ### Common parameters
 
 | Parameter                               | Description                                                | Default                                                 |
 |-----------------------------------------|------------------------------------------------------------|---------------------------------------------------------|
-| `nameOverride`                          | String to partially override nginx.fullname                | `nil`                                                   |
-| `fullnameOverride`                      | String to fully override nginx.fullname                    | `nil`                                                   |
+| `nameOverride`                          | String to partially override fullname                | `nil`                                                   |
+| `fullnameOverride`                      | String to fully override fullname                    | `nil`                                                   |
 
 ### config parameters
 
@@ -72,12 +75,12 @@ Download the default values to use as example:
     helm pull bitnami/wordpress --untar
 
 ```bash
-$ helm install my-release -f values.yaml bitnami/nginx
+$ helm install my-release -f values.yaml cdeadspine/nodemailer-contact-form
 ```
 
 ### Change version
 
-To modify the version used in this chart you can specify a TODO link [valid image tag](https://hub.docker.com/r/bitnami/nginx/tags/) using the `image.tag` parameter. For example, `image.tag=X.Y.Z`. This approach is also applicable to other images like exporters.
+To modify the version used in this chart you can specify a link [valid image tag](https://hub.docker.com/repository/docker/cdeadspine/nodemailer-contact-form/tags) using the `image.tag` parameter.
 
 
 TODO test the development configuration? or dont care
@@ -102,5 +105,4 @@ To enable ingress integration, please set `ingress.enabled` to `true`.
 
 TODO some simple kubectl commands like logs
 ## Troubleshooting
-
-Find more information about how to deal with common errors related to Bitnami’s Helm charts in [this troubleshooting guide](https://docs.bitnami.com/general/how-to/troubleshoot-helm-chart-issues).
+TODO

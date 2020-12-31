@@ -15,5 +15,8 @@ app.set("view engine", "handlebars");
 app.engine("handlebars", exphbs());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.get("/", (req, res) => {
+    res.send("health ok");
+  });
 app.post(config.submitPath, server.sendEmail );
 app.listen(config.submitPort, () => console.log("Server started..."));
