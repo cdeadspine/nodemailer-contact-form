@@ -49,7 +49,7 @@ replicaCount: 1
 
 image:
   repository: docker.io/cdeadspine/nodemailer-contact-form
-  pullPolicy: IfNotPresent
+  pullPolicy: IfNotPresent #Always #for development only, you probably want IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
@@ -68,6 +68,7 @@ serviceAccount:
 
 podAnnotations: {}
 
+#important security lockdown
 podSecurityContext:
   fsGroup: 1001
 

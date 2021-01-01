@@ -39,13 +39,22 @@ Docker instructions:
     docker push cdeadspine/nodemailer-contact-form:1.0.1
     docker push cdeadspine/nodemailer-contact-form:latest
 
+    #troubleshoot
+    docker run -it cdeadspine/nodemailer-contact-form /bin/ash
 
 Helm instructions:
     helm lint ./helm/http-endpoint-nodemailer
     helm package ./helm/http-endpoint-nodemailer
+    cd ./helm/http-endpoint-nodemailer
+    #vital step to install and test this on docker desktop kubernetes or minikube, working dockerfile does not necessarily work when deployed by helm
+    helm install nodemailer-test ./helm/http-endpoint-nodemailer
 
-    GET /  (root) results in "health ok"
-    POST /send (configurable path) takes form parameters, encodes as JSON, sends email using handlebars template
+    #testing
+    helm uninstall nodemailer-test
+    helm install nodemailer-test ./helm/http-endpoint-nodemailer
+    kubectl get all
+    kubectl exec --stdin --tty pod/nodemailer-test-http-endpoint-nodemailer-55778c8675-zhfp2 -- /bin/ash
+
 
 ## Install Dependencies
 
