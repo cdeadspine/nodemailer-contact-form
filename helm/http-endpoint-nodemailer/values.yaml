@@ -6,6 +6,8 @@ config:
   default: #required structure
     submitPath: /send
     submitPort: 8080
+    bodySizeLimit: 100kb #express body-parser->urlencoded.limit
+    debugRequests: false
     smtp:
       host: mail.host.com
       port: 25

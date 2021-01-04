@@ -1,6 +1,5 @@
 # http-endpoint-nodemailer
 
-TODO maybe remove clusterip?
 TODO health checks
 
 Simplest possible http endpoint -> email. 

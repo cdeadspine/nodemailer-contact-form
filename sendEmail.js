@@ -1,6 +1,9 @@
 const nodemailer = require("nodemailer");
 var hbs = require('nodemailer-express-handlebars');
 const exphbs = require("express-handlebars");
+var multer  = require('multer')
+var upload = multer().none()
+
 var yaml = require('node-yaml-config');
 config = yaml.load(__dirname + '/config.yml');
 var templatePath = __dirname + '/views'
@@ -47,8 +50,36 @@ module.exports = {
         subject: config.mail.subject, 
         html: template({
           body: req.body
-        })//couldn't figure out how to use template : object (instead of a file on disk)
+        })
       };
+      
+      if (config.debugRequests){        
+        console.log("Headers:")
+        console.log(JSON.stringify(req.headers));
+        console.log("Params:")
+        console.log(req.params)
+        console.log("Query:")
+        console.log(req.query)
+        console.log("Pre-JSON body:");
+        console.log(req.rawJSONBody);
+        console.log("Pre-URLencode body:");
+        console.log(req.rawURLBody);
+        console.log("Body (json or urlencoded or multipart):");
+        console.log(req.body);
+        console.log("Templated:");
+        console.log(mailOptions.html);
+        upload(req, res, function (err) {
+          if (err instanceof multer.MulterError) {
+            console.log("Multer error:");
+            console.log(err);
+          } else if (err) {
+            console.log("other error:");
+            console.log(err);
+          }
+          console.log("Multer body:");
+          console.log(req.body);
+        })
+      }
 
       transporter.sendMail(mailOptions, (error, info) => {        
         if (error) {
