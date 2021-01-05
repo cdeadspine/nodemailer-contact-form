@@ -20,3 +20,8 @@ $ helm search repo nodemailer
 NAME                                    CHART VERSION   APP VERSION     DESCRIPTION
 cdeadspine/http-endpoint-nodemailer     1.0.1           4.17.1          NodeJS Express http endpoint, accepting form su...
 ```
+
+# artifacthub.io
+Sign up with github
+-> control panel
+-> add repo

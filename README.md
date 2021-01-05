@@ -19,17 +19,19 @@ Configuration:
     * docker logs <running container>
     * kubectl logs <running pod>
 * resultPage:
-* html returned on successful submission
+  * html returned on successful submission
 * errorPage:
-* html returned upon failure of any type (can't connect to smtp)
+  * html returned upon failure of any type (can't connect to smtp)
 * mail: ->     
-* body: | #handlebars template, default json formats entire form submission (up to 2000 key:value pairs via multer (no files allowed), 100kb via 
+  * body: | #handlebars template, default json formats entire form submission (up to 2000 key:value pairs via multer (no files allowed), 100kb via 
             x-www-form-urlencoded)
-* <p>Form submission</p>
-    <p>{{{json body}}}</p>  
+```
+        <p>Form submission</p>
+        <p>{{{json body}}}</p>  
         If you know exact form elements:
             <p>Form submission</p>
             <p>{{{body.email}}}</p>
+```            
 
 Docker instructions:
 ```
