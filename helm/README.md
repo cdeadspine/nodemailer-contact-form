@@ -11,7 +11,10 @@ $ helm repo index . # create or update the index.yaml for repo
 
 # How to use it as a helm repo
 
-You might know github has a raw view. So simply use the following:
+(github raw will not serve tgz files)
+copy ./helm/README.md ./docs/README.md
+copy ./helm/index.yaml ./docs/index.yaml
+copy ./helm/index.yaml ./docs/index.yaml
 
 ```bash
 $ helm repo add cdeadspine 'https://raw.githubusercontent.com/cdeadspine/nodemailer-contact-form/master/helm'
