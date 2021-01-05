@@ -57,14 +57,10 @@ Docker instructions:
 ```
 Helm instructions:
 ```
-    helm lint ./helm/http-endpoint-nodemailer
-    helm package ./helm/http-endpoint-nodemailer
-    cd ./helm/http-endpoint-nodemailer
-    #vital step to install and test this on docker desktop kubernetes or minikube, working dockerfile does not necessarily work when deployed by helm
-    helm install nodemailer-test ./helm/http-endpoint-nodemailer
+    see ./helm/README.md
 ```
-```
-    #testing
+#testing
+```    
     helm uninstall nodemailer-test
     helm install nodemailer-test ./helm/http-endpoint-nodemailer
     kubectl get all

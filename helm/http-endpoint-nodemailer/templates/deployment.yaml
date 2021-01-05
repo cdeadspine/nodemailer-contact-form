@@ -49,12 +49,22 @@ spec:
         ports:
           - name: http
             containerPort: {{ .Values.config.default.submitPort }}
-            protocol: TCP
+            protocol: TCP        
         livenessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
           httpGet:
             path: /
             port: http
         readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+          successThreshold: 1
           httpGet:
             path: /
             port: http

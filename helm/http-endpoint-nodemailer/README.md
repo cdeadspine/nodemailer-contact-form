@@ -1,35 +1,37 @@
 # http-endpoint-nodemailer
 
-TODO health checks
-
 Simplest possible http endpoint -> email. 
 
 For example: fixing contact forms when generating a static wordpress site using WP2static plugin and WPServerless forms plugin
 
-Submitted html->body must survive JSON.stringify. 
+Submitted html->body must survive express->(json encoding, urlencoding, multer (multipart) encoding). 
 The default template formats the full submitted form as JSON, but a handlebars template can format the email using specific known values.
 
 ## TL;DR
 
 ```bash
-TODO        $ helm repo add 
-TODO        $ helm install my-release <>
+$ helm repo add cdeadspine 'https://raw.githubusercontent.com/cdeadspine/nodemailer-contact-form/master/helm'
+$ helm repo update
+#download to use values.yaml as example file
+$ helm pull cdeadspine/http-endpoint-nodemailer --untar
+# copy values.yaml to your root directory and edit config
+$ helm install my-release -f .\MyValues.yaml cdeadspine/http-endpoint-nodemailer -n staging
 ```
 
 ## Prerequisites
 
-TODO?   - Kubernetes 1.12+
-- Helm 3.0-beta3+
+- Kubernetes
+- Helm 3
 
 ## Test or Explore
-    helm install nodemailer-test --dry-run --debug ./helm/http-endpoint-nodemailer
-    helm get manifest nodemailer-test
+- helm install nodemailer-test --dry-run --debug cdeadspine/http-endpoint-nodemailer
+- helm get manifest nodemailer-test
 
 ## Installing the Chart
 
 To install the chart with the release name `my-release`:
 
-TODO same from tldr
+helm install my-release -f .\MyValues.yaml cdeadspine/http-endpoint-nodemailer -n staging
 
 > **Tip**: List all releases using `helm list`
 
@@ -66,42 +68,28 @@ The following tables lists the configurable parameters
 | All configuration required              | Self explanatory                                                                         |                                                       |
 
 
-            TODO figure out a helm repository    
-
-Download the default values to use as example:
-    helm repo add bitnami https://charts.bitnami.com/bitnami
-    #download to use values.yaml as example file
-    helm pull bitnami/wordpress --untar
+Download the default values.yaml to use as example:
+- helm repo add cdeadspine 'https://raw.githubusercontent.com/cdeadspine/nodemailer-contact-form/master/helm'
+- helm repo update
+- #download to use values.yaml as example file
+- helm pull cdeadspine/http-endpoint-nodemailer --untar
 
 ```bash
-$ helm install my-release -f values.yaml cdeadspine/nodemailer-contact-form
+$ helm install my-release -f .\MyValues.yaml cdeadspine/http-endpoint-nodemailer -n staging
 ```
+
+### Ingress
+Set up your ingress to 
+* config.default.submitport (default 8080)
+* config.default.submitPath  (default /send)
 
 ### Change version
 
-To modify the version used in this chart you can specify a link [valid image tag](https://hub.docker.com/repository/docker/cdeadspine/nodemailer-contact-form/tags) using the `image.tag` parameter.
+To modify the version used in this chart visit [valid image tag](https://hub.docker.com/repository/docker/cdeadspine/nodemailer-contact-form/tags) 
+use the `image.tag` parameter.
 
-
-TODO test the development configuration? or dont care
-### Adding extra environment variables
-
-In case you want to add extra environment variables (useful for advanced operations like custom init scripts), you can use the `extraEnvVars` property.
-
-```yaml
-extraEnvVars:
-  - name: LOG_LEVEL
-    value: error
-```
-
-Alternatively, you can use a ConfigMap or a Secret with the environment variables. To do so, use the `extraEnvVarsCM` or the `extraEnvVarsSecret` values.
-
-TODO mention ingress? or leave it up to user
-### Ingress
-
-This chart provides support for ingress resources. If you have an ingress controller installed on your cluster, such as [nginx-ingress-controller](https://github.com/bitnami/charts/tree/master/bitnami/nginx-ingress-controller) or [contour](https://github.com/bitnami/charts/tree/master/bitnami/contour) you can utilize the ingress controller to serve your application.
-
-To enable ingress integration, please set `ingress.enabled` to `true`.
-
-TODO some simple kubectl commands like logs
 ## Troubleshooting
-TODO
+values.yaml:
+* config.default.debugRequests = true
+  * This prints http requests to logs
+  * kubectl logs <pod>
