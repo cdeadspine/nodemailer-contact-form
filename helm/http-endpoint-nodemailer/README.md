@@ -59,13 +59,12 @@ The following tables lists the configurable parameters
 
 ### config parameters
 
-| Parameter                               | Description                                                                              | Default                                                 |
-|-----------------------------------------|------------------------------------------------------------------------------------------|---------------------------------------------------------|
-
-| `config.default.mail.body`              | Handlebars template to format email                                                      | all form values                                                  |
-| `config.default.resultPage`             | html to show upon success                                                                | Indicates success                                                 |
-| `config.default.errorPage`              | html to show upon error                                                                  | Indicates error                                                   |
-| All configuration required              | Self explanatory                                                                         |                                                       |
+| Parameter | Description  | Default |
+|-----------------------------------------|-----------------------------------------|-----------------------------------------|
+| `config.default.mail.body` | Handlebars template to format email | all form values |
+| `config.default.resultPage` | html to show upon success | Indicates success |
+| `config.default.errorPage` | html to show upon error  | Indicates error |
+| All configuration required | Self explanatory |  |
 
 
 Download the default values.yaml to use as example:
@@ -92,4 +91,4 @@ use the `image.tag` parameter.
 values.yaml:
 * config.default.debugRequests = true
   * This prints http requests to logs
-  * kubectl logs <pod>
+  * kubectl logs pod

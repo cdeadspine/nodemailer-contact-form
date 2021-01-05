@@ -7,6 +7,7 @@ For example: fixing contact forms when generating a static wordpress site using 
 app.js
 * GET /  (root) results in "health ok"
 * POST /send (configurable path) takes form parameters, encodes as JSON, sends email using handlebars template
+
 appWithTestPage.js
 * GET /  (root) results in a fancy static contact form, that submits to /send
 * POST /send (configurable path) takes form parameters, encodes as JSON, sends email using handlebars template
@@ -17,18 +18,18 @@ Configuration:
     * stdout
     * docker logs <running container>
     * kubectl logs <running pod>
-  * resultPage:
-    * html returned on successful submission
-  * errorPage:
-    * html returned upon failure of any type (can't connect to smtp)
-  * mail: ->     
-  * body: | #handlebars template, default json formats entire form submission (up to 2000 key:value pairs via multer (no files allowed), 100kb via 
-                x-www-form-urlencoded)
-    * <p>Form submission</p>
-      <p>{{{json body}}}</p>  
-            If you know exact form elements:
-                <p>Form submission</p>
-                <p>{{{body.email}}}</p>
+* resultPage:
+* html returned on successful submission
+* errorPage:
+* html returned upon failure of any type (can't connect to smtp)
+* mail: ->     
+* body: | #handlebars template, default json formats entire form submission (up to 2000 key:value pairs via multer (no files allowed), 100kb via 
+            x-www-form-urlencoded)
+* <p>Form submission</p>
+    <p>{{{json body}}}</p>  
+        If you know exact form elements:
+            <p>Form submission</p>
+            <p>{{{body.email}}}</p>
 
 Docker instructions:
 ```
