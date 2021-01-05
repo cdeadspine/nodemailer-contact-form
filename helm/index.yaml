@@ -1,0 +1,22 @@
+apiVersion: v1
+entries:
+  http-endpoint-nodemailer:
+  - apiVersion: v2
+    appVersion: 4.17.1
+    created: "2021-01-05T07:35:45.7934828-08:00"
+    description: NodeJS Express http endpoint, accepting form submission from static
+      website and emailing handlebars-templated form values
+    digest: 214f11931ad9efa9aa96ce13e01cb6823915f2ccd786daf629c920a82652751e
+    keywords:
+    - static-website
+    - nodemailer
+    - http-form
+    - handlebars
+    name: http-endpoint-nodemailer
+    sources:
+    - https://github.com/cdeadspine/nodemailer-contact-form
+    type: application
+    urls:
+    - http-endpoint-nodemailer-1.0.1.tgz
+    version: 1.0.1
+generated: "2021-01-05T07:35:45.7289438-08:00"
